@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=NetC2_1 Pin=DA2-1
+Removed Pin From Net: NetName=NetC2_1 Pin=DA2-2
+Removed Pin From Net: NetName=Vs Pin=DA2-3
+Removed Pin From Net: NetName=+4V Pin=DA2-4
+Removed Pin From Net: NetName=VSREF Pin=DA2-5
+Added Pin To Net: NetName=+12V Pin=DA2-1
+Added Pin To Net: NetName=NetC2_1 Pin=DA2-1
+Added Pin To Net: NetName=NetC2_1 Pin=DA2-2
+Added Pin To Net: NetName=NetC13_1 Pin=DA2-2
+Added Pin To Net: NetName=-4V Pin=DA2-3
+Added Pin To Net: NetName=Vs Pin=DA2-3
+Added Pin To Net: NetName=+4V Pin=DA2-4
+Added Pin To Net: NetName=NetDA2_4 Pin=DA2-4
+Added Pin To Net: NetName=-4V Pin=DA2-5
+Added Pin To Net: NetName=VSREF Pin=DA2-5

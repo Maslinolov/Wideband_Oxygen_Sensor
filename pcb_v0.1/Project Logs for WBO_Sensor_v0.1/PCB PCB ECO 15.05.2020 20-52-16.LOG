@@ -1,0 +1,25 @@
+Removed Pin From Net: NetName=NetC2_1 Pin=DA2-1
+Removed Pin From Net: NetName=NetC2_1 Pin=DA2-2
+Removed Pin From Net: NetName=Vs Pin=DA2-3
+Removed Pin From Net: NetName=+4V Pin=DA2-4
+Removed Pin From Net: NetName=VSREF Pin=DA2-5
+Change Component Designator: OldDesignator=DA2 NewDesignator=DA6
+Added Pin To Net: NetName=+12V Pin=DA2-1
+Added Pin To Net: NetName=NetC13_1 Pin=DA2-2
+Added Pin To Net: NetName=-4V Pin=DA2-3
+Added Pin To Net: NetName=NetDA2_4 Pin=DA2-4
+Added Pin To Net: NetName=-4V Pin=DA2-5
+Added Pin To Net: NetName=NetC2_1 Pin=DA6-1
+Added Pin To Net: NetName=NetC2_1 Pin=DA6-2
+Added Pin To Net: NetName=Vs Pin=DA6-3
+Added Pin To Net: NetName=+4V Pin=DA6-4
+Added Pin To Net: NetName=VSREF Pin=DA6-5
+Added Pin To Net: NetName=NetDA2_6 Pin=DA6-6
+Added Pin To Net: NetName=NetDA2_7 Pin=DA6-7
+Added Pin To Net: NetName=NetC3_2 Pin=DA6-8
+Added Pin To Net: NetName=NetC3_1 Pin=DA6-9
+Added Pin To Net: NetName=NetC2_1 Pin=DA6-10
+Added Pin To Net: NetName=-4V Pin=DA6-11
+Change Net Name : Old Net Name=NetDA2_6 New Net Name=NetDA6_6
+Change Net Name : Old Net Name=NetDA2_7 New Net Name=NetDA3_11
+Change Net Name : Old Net Name=NetDA2_14 New Net Name=NetDA3_6
