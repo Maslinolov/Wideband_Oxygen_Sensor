@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=NetC13_1 Pin=DA2-2
+Removed Pin From Net: NetName=NetDA2_4 Pin=DA2-4
+Change Component Comment : Designator=DA2 Old Comment=LM2576HVT-ADJ New Comment=LM2576ADJ
+Added Pin To Net: NetName=NetDA2_4 Pin=DA2-2
+Added Pin To Net: NetName=NetC13_1 Pin=DA2-4
+Change Net Name : Old Net Name=NetDA2_4 New Net Name=NetDA2_2
