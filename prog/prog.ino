@@ -7,12 +7,12 @@
 #define X2 5
 #define X3 10
 #define ConvVCC 7
-#define PntL 1
-#define PntR 17
+#define PntL 17
+#define PntR 1
 
-#define Frst 0
+#define Frst 15
 #define Scnd 16
-#define Thrd 15
+#define Thrd 0
 
 #define Btn 2
 
@@ -22,9 +22,10 @@
 
 #define lambda_pin 14
 
-#define OpenAir 4.183
-#define OpenAirVout 766.666
-double ConvK = OpenAir/OpenAirVout;
+#define OpenAir 5
+#define OpenAirVout 1024
+double ConvK = 0.0048828125; //OpenAir/OpenAirVout;
+
 //Вид таблицы AFR: Vout, A, B
 const PROGMEM float afrtable [30][3] = {
   { 1.4, 3, 5.88 }, //10.08
@@ -59,10 +60,10 @@ const PROGMEM float afrtable [30][3] = {
   { 2.85, 20, -37.34 }, //19.66
   }; 
 
-int AFR = 333;
-float vout = 0;
-float voutADC = 0;
-int vouttmp = 0;
+int AFR = 123;
+double vout = 0;
+double voutADC = 0;
+int32_t vouttmp = 0;
 int voutprv = 1;
 #define voutsmpls 20
 int voutn = 0;
@@ -77,61 +78,61 @@ bool Chk = false;
 
 void tabl(int numr = 0){ //ДАННАЯ ТАБЛИЦА ИСТИННОСТИ ВЕРНА ТОЛЬКО ДЛЯ ДАННОЙ ПЛАТЫ ТЕРМОМЕТРА
   switch(numr){
-    case 1: 
+    case 0: 
       digitalWrite(X0, LOW); 
       digitalWrite(X1, LOW); 
       digitalWrite(X2, LOW); 
       digitalWrite(X3, LOW);      
     break;
-    case 0:
+    case 7:
       digitalWrite(X0, HIGH); 
       digitalWrite(X1, LOW); 
       digitalWrite(X2, LOW); 
       digitalWrite(X3, LOW);   
     break;
+    case 1:
+      digitalWrite(X0, LOW); 
+      digitalWrite(X1, HIGH); 
+      digitalWrite(X2, LOW); 
+      digitalWrite(X3, LOW); 
+    break;
+    case 3:
+      digitalWrite(X0, HIGH); 
+      digitalWrite(X1, HIGH); 
+      digitalWrite(X2, LOW); 
+      digitalWrite(X3, LOW); 
+    break;
     case 4:
       digitalWrite(X0, LOW); 
-      digitalWrite(X1, HIGH); 
-      digitalWrite(X2, LOW); 
-      digitalWrite(X3, LOW); 
-    break;
-    case 8:
-      digitalWrite(X0, HIGH); 
-      digitalWrite(X1, HIGH); 
-      digitalWrite(X2, LOW); 
-      digitalWrite(X3, LOW); 
-    break;
-    case 2:
-      digitalWrite(X0, LOW); 
-      digitalWrite(X1, LOW); 
-      digitalWrite(X2, HIGH); 
-      digitalWrite(X3, LOW); 
-    break;
-    case 6:
-      digitalWrite(X0, HIGH); 
       digitalWrite(X1, LOW); 
       digitalWrite(X2, HIGH); 
       digitalWrite(X3, LOW); 
     break;
     case 5:
+      digitalWrite(X0, HIGH); 
+      digitalWrite(X1, LOW); 
+      digitalWrite(X2, HIGH); 
+      digitalWrite(X3, LOW); 
+    break;
+    case 6:
       digitalWrite(X0, LOW); 
       digitalWrite(X1, HIGH); 
       digitalWrite(X2, HIGH); 
       digitalWrite(X3, LOW); 
     break;
-    case 9:
+    case 2:
       digitalWrite(X0, HIGH); 
       digitalWrite(X1, HIGH); 
       digitalWrite(X2, HIGH); 
       digitalWrite(X3, LOW); 
     break;
-    case 3:
+    case 8:
       digitalWrite(X0, LOW); 
       digitalWrite(X1, LOW); 
       digitalWrite(X2, LOW); 
       digitalWrite(X3, HIGH); 
     break;
-    case 7:
+    case 9:
       digitalWrite(X0, HIGH); 
       digitalWrite(X1, LOW); 
       digitalWrite(X2, LOW); 
@@ -189,29 +190,29 @@ void setup() {
   pinMode(X3, OUTPUT); 
   pinMode(ConvVCC, OUTPUT);  
   pinMode(PWM_pin, OUTPUT);  
-
+  //analogReference(DEFAULT);
   pinMode(lambda_pin, INPUT);
 
-  analogWrite(PWM_pin, 170);
+  analogWrite(PWM_pin, 140);
   digitalWrite(ConvVCC, HIGH);
   digitalWrite(Frst, HIGH); 
   digitalWrite(Scnd, LOW); 
   digitalWrite(Thrd, LOW);  
  
   //Lamp_anti_poisoning
-  for(int i = 0; i < 10; i++){
+ /*for(int i = 0; i < 10; i++){
     FrstL = i;
     ScndL = i;
     ThrdL = i;
     AFRSHWN(120);
-    }  
+    }  */
 }
 
 
 /*void ButInter(){    
     btn++;   
   }*/
-void loop() { 
+void loop(){ 
 
   /*if(slp){     
     sleep_mode();
@@ -233,6 +234,7 @@ void loop() {
         AFR = (int)((afrtable[i][1] * vout + afrtable[i][2])*100);
       }*/
     }
+    
   //Вывод напряжения без преобразования
  /* FrstL = (int)voutADC / 100;
   ScndL = ((int)(voutADC) % 100)/10;
