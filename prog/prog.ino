@@ -1,6 +1,11 @@
 //#include <avr/power.h>
 //#include <avr/sleep.h>
 //#include <avr/interrupt.h>
+#include <SoftwareSerial.h>
+
+
+
+SoftwareSerial Serial_2(PD4, PD2);
 
 #define X0 3
 #define X1 6
@@ -71,6 +76,8 @@ int voutn = 0;
 int Shw = 0;                     
 //int btn = 0;
 //bool slp = false;
+int dltmp = 0;
+int dl = 25;
 
 int FrstL = 0, ScndL = 0, ThrdL = 0;
 
@@ -177,6 +184,9 @@ void setup() {
   power_usart0_disable();
   power_twi_disable();  */
  // attachInterrupt(Btn, ButInter, RISING); 
+ 
+  Serial_2.begin(19200);
+  Serial_2.println("R");
   
   TCCR1A = 0b00000001;  // 8bit
   TCCR1B = 0b00000001;
@@ -200,12 +210,12 @@ void setup() {
   digitalWrite(Thrd, LOW);  
  
   //Lamp_anti_poisoning
- /*for(int i = 0; i < 10; i++){
+ for(int i = 0; i < 10; i++){
     FrstL = i;
     ScndL = i;
     ThrdL = i;
     AFRSHWN(120);
-    }  */
+    }  
 }
 
 
@@ -213,11 +223,11 @@ void setup() {
     btn++;   
   }*/
 void loop(){ 
-
-  /*if(slp){     
-    sleep_mode();
-    slp = false;
-  }  */
+  dltmp++;
+  if(dltmp >= dl){
+      dltmp = 0;
+      Serial_2.println(AFR);
+    }
   vouttmp += analogRead(lambda_pin);
   voutn++;
   if(voutn == voutsmpls - 1 ){
