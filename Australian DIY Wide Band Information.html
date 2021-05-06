@@ -1,0 +1,450 @@
+
+<!-- saved from url=(0048)http://techedge.com.au/vehicle/wbo2/wblambda.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>Australian DIY Wide Band Information</title>
+
+	
+	<meta name="Copyright" content="Copyright © 2002 Tech Edge Pty. Ltd">
+	<meta name="Author" content="Tech Edge Pty.Ltd., Peter Gargano">
+	<meta name="KeyWords" content="Wideband, L1H1, AFR, Lambda, O2 sensor, NTK, Bosch, UEGO, DIY, PCB, oxygen sensor, Do it yourself, Tech Edge, DIY-WB, Oz-WB, Oz-DIY-WB, DIY-EFI">
+
+<link rel="stylesheet" type="text/css" href="./Australian DIY Wide Band Information_files/tet.css">
+
+</head>
+
+<body>
+
+<h1>DIY-WB Data</h1>
+<p>
+This document describes some of the <a href="http://techedge.com.au/vehicle/wbo2/default.htm">DIY-WB unit</a>'s operating characteristics.
+It is important to note that the unit is built using high tolerance components
+<b>but has no internal adjustments</b>. Some variation is therefore expected between
+each unit due to component tolerances and aging of both the sensor and the unit
+itself.
+</p>
+
+<h2>V<sub>out</sub> vs. Lambda</h2>
+
+<table border="0">
+<tbody><tr>
+<td>
+	<img src="./Australian DIY Wide Band Information_files/wblambda.gif" width="445" height="305">
+</td>
+<td>
+This graph shows the DIY-WB's <b>Vout</b> voltage against <b>Lambda</b>.
+The Lambda measure is independent of the hydrocarbon fuel being used.
+
+<br>
+<br>
+
+The <b>stoichiometric point</b> is where all the available oxygen has combined with
+all the available fuel leaving no free residual oxygen. The stoichiometric
+point is shown on the graph as the <font color="blue"><b>vertical blue line</b></font>
+at lambda of 1.00.
+<br>
+<br>
+The <b>stoichiometric output voltage</b> is nominally <b>2.50 Volts</b> and this
+point is shown as the <font color="green"><b>horizontal green line</b></font> that
+crosses the blue line at a lambda of 1.00.
+
+</td>
+</tr>
+</tbody></table>
+
+
+<h2 align="center">Lambda and AFRs for different fuels</h2>
+
+<table border="0">
+<tbody><tr>
+<td cellpadding="14">
+
+This table show the DIY-WB unit's measured
+<b>Lambda</b> against the <b>Vout</b> voltage which is available at pin 7
+of the male DB9 connector (pin 6 = GND).
+<br>
+<br>
+
+Note that <b>Lambda</b> is a ratio of ratios and is <b>1.0 exactly</b>
+at the <b>stoichiometric</b> point for <b>any</b> given fuel.
+This table shows the <b>approximate AFRs</b> for a number different common fuels.
+<br>
+<br>
+As fuel compositions are seasonal and regional, the AFRs shown here
+should be considered only as approximate.
+<br>
+<br>
+The free-air Vout point of 4.00 volts is interesting from a number of viewpoints.
+The free-air voltage will vary a little from location to location as there will
+be differing trace concentrations of various hydrocarbon fuels in the atmosphere.
+<br>
+<br>
+The free-air point can be used to calibrate the DIY-WB unit for
+a particular sensor that has aged or is not close enough to 4.00 Volts
+using the original calibration resistor that is built into the sensor's
+<a href="http://techedge.com.au/vehicle/wbo2/wbsumi.htm">8 pin Sumitomo connector</a>.
+<br>
+<br>
+As noted above, the basic WB unit's Vout may vary slightly from the specifications
+shown here. The stoichiometric Vout of 2.50 may be a little higher or
+lower (+/- 0.03 Volts) and the free-air Vout may be a little higher or
+lower than 4.00. It's worth noting that the most important calibration
+value is to get the <b>difference between the stoic Vout (2.50) and free-air (4.00)</b>
+to be as <b>close as possible to 1.50 Volts</b> so that the interesting tuning AFR range
+(AFRs of between 10 and 15 for petrol) are then most accurately represented.
+When this 1.50 volt specification is achieved, and the unit's offset from the
+nominal 2.50 volt stoic value is compensated for, quite reliable AFR values can
+be obtained from the unit.
+
+</td>
+
+<td>	<!-- data table -->
+
+<table border="0">
+<tbody><tr>
+<td width="40"><b>V</b><sub>out</sub></td>
+<td width="60"><b>Lambda</b></td>
+<td width="60"><b>Petrol</b></td>
+<td width="60"><b>LPG</b></td>
+<td width="60"><b>Methanol</b></td>
+<td width="60"><b>Diesel</b></td>
+</tr>
+<tr>
+<td>1.40</td>
+<td>0.686</td>
+<td><font color="red">10.08</font></td>
+<td>10.63</td>
+<td>4.39</td>
+<td>9.94</td>
+</tr>
+<tr>
+<td>1.45</td>
+<td>0.696</td>
+<td><font color="red">10.23</font></td>
+<td>10.79</td>
+<td>4.45</td>
+<td>10.09</td>
+</tr>
+<tr>
+<td>1.50</td>
+<td>0.706</td>
+<td><font color="red">10.38</font></td>
+<td>10.94</td>
+<td>4.52</td>
+<td>10.24</td>
+</tr>
+<tr>
+<td>1.55</td>
+<td>0.716</td>
+<td><font color="red">10.53</font></td>
+<td>11.10</td>
+<td>4.58</td>
+<td>10.39</td>
+</tr>
+<tr>
+<td>1.60</td>
+<td>0.727</td>
+<td><font color="red">10.69</font></td>
+<td>11.27</td>
+<td>4.65</td>
+<td>10.54</td>
+</tr>
+<tr>
+<td>1.65</td>
+<td>0.739</td>
+<td><font color="red">10.86</font></td>
+<td>11.45</td>
+<td>4.73</td>
+<td>10.71</td>
+</tr>
+<tr>
+<td>1.70</td>
+<td>0.750</td>
+<td><font color="red">11.03</font></td>
+<td>11.63</td>
+<td>4.80</td>
+<td>10.88</td>
+</tr>
+<tr>
+<td>1.75</td>
+<td>0.762</td>
+<td><font color="red">11.20</font></td>
+<td>11.81</td>
+<td>4.88</td>
+<td>11.05</td>
+</tr>
+<tr>
+<td>1.80</td>
+<td>0.774</td>
+<td><font color="red">11.38</font></td>
+<td>12.00</td>
+<td>4.95</td>
+<td>11.23</td>
+</tr>
+<tr>
+<td>1.85</td>
+<td>0.787</td>
+<td><font color="red">11.57</font></td>
+<td>12.20</td>
+<td>5.04</td>
+<td>11.41</td>
+</tr>
+<tr>
+<td>1.90</td>
+<td>0.800</td>
+<td><font color="red">11.76</font></td>
+<td>12.40</td>
+<td>5.12</td>
+<td>11.60</td>
+</tr>
+<tr>
+<td>1.95</td>
+<td>0.814</td>
+<td><font color="red">11.96</font></td>
+<td>12.61</td>
+<td>5.21</td>
+<td>11.80</td>
+</tr>
+<tr>
+<td>2.00</td>
+<td>0.828</td>
+<td><font color="red">12.17</font></td>
+<td>12.83</td>
+<td>5.30</td>
+<td>12.00</td>
+</tr>
+<tr>
+<td>2.05</td>
+<td>0.842</td>
+<td><font color="red">12.38</font></td>
+<td>13.05</td>
+<td>5.39</td>
+<td>12.21</td>
+</tr>
+<tr>
+<td>2.10</td>
+<td>0.857</td>
+<td><font color="red">12.60</font></td>
+<td>13.29</td>
+<td>5.49</td>
+<td>12.43</td>
+</tr>
+<tr>
+<td>2.15</td>
+<td>0.873</td>
+<td><font color="red">12.83</font></td>
+<td>13.53</td>
+<td>5.59</td>
+<td>12.66</td>
+</tr>
+<tr>
+<td>2.20</td>
+<td>0.889</td>
+<td><font color="red">13.07</font></td>
+<td>13.78</td>
+<td>5.69</td>
+<td>12.89</td>
+</tr>
+<tr>
+<td>2.25</td>
+<td>0.905</td>
+<td><font color="red">13.31</font></td>
+<td>14.03</td>
+<td>5.79</td>
+<td>13.13</td>
+</tr>
+<tr>
+<td>2.30</td>
+<td>0.923</td>
+<td><font color="red">13.57</font></td>
+<td>14.31</td>
+<td>5.91</td>
+<td>13.39</td>
+</tr>
+<tr>
+<td>2.35</td>
+<td>0.941</td>
+<td><font color="red">13.84</font></td>
+<td>14.59</td>
+<td>6.03</td>
+<td>13.65</td>
+</tr>
+<tr>
+<td>2.40</td>
+<td>0.960</td>
+<td><font color="red">14.11</font></td>
+<td>14.88</td>
+<td>6.14</td>
+<td>13.92</td>
+</tr>
+<tr>
+<td>2.45</td>
+<td>0.980</td>
+<td><font color="red">14.40</font></td>
+<td>15.18</td>
+<td>6.27</td>
+<td>14.20</td>
+</tr>
+<tr>
+<td><b>2.50</b></td>
+<td><b>1.000</b></td>
+<td><b><font color="red">14.70</font></b></td>
+<td><b>15.50</b></td>
+<td><b>6.40</b></td>
+<td><b>14.50</b></td>
+</tr>
+<tr>
+<td>2.55</td>
+<td>1.037</td>
+<td><font color="red">15.25</font></td>
+<td>16.08</td>
+<td>6.64</td>
+<td>15.04</td>
+</tr>
+<tr>
+<td>2.60</td>
+<td>1.078</td>
+<td><font color="red">15.84</font></td>
+<td>16.70</td>
+<td>6.90</td>
+<td>15.62</td>
+</tr>
+<tr>
+<td>2.65</td>
+<td>1.121</td>
+<td><font color="red">16.48</font></td>
+<td>17.38</td>
+<td>7.17</td>
+<td>16.26</td>
+</tr>
+<tr>
+<td>2.70</td>
+<td>1.169</td>
+<td><font color="red">17.18</font></td>
+<td>18.11</td>
+<td>7.48</td>
+<td>16.95</td>
+</tr>
+<tr>
+<td>2.75</td>
+<td>1.220</td>
+<td><font color="red">17.93</font></td>
+<td>18.91</td>
+<td>7.81</td>
+<td>17.69</td>
+</tr>
+<tr>
+<td>2.80</td>
+<td>1.276</td>
+<td><font color="red">18.76</font></td>
+<td>19.78</td>
+<td>8.17</td>
+<td>18.50</td>
+</tr>
+<tr>
+<td>2.85</td>
+<td>1.337</td>
+<td><font color="red">19.66</font></td>
+<td>20.73</td>
+<td>8.56</td>
+<td>19.39</td>
+</tr>
+<tr>
+<td>2.90</td>
+<td>1.405</td>
+<td><font color="red">20.66</font></td>
+<td>21.78</td>
+<td>8.99</td>
+<td>20.38</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td colspan="5" align="center">. . .</td>
+</tr>
+<tr>
+<td>4.00</td>
+<td colspan="5" align="center"><b>free-air</b> (can be used for calibration)</td>
+</tr>
+</tbody></table>	<!-- / data table -->
+
+</td>
+</tr>
+</tbody></table>
+
+<h2>Input Impedance, V<sub>out</sub> and the Real World</h2>
+
+	<img align="left" src="./Australian DIY Wide Band Information_files/riro.gif" width="243" height="166" hspace="5" vspace="5">
+<p>
+It is important to understand that the Tech Edge wideband unit (like any real world device)
+has a non-zero <font color="red">output impedance (<b>Ro</b>)</font>.
+
+Any device the wideband unit is connected to for the purposes of logging Vout will have
+a non-infinite <font color="red">input impedance (<b>Ri</b>)</font>.
+
+This means that there will be small differences between the logged voltage (as seen by
+an ECM, etc.), and the voltage produced by the wideband unit. Generally if the logging
+device has an input impedance greater than 100 k ohms then this effect can be ignored.
+If the input impedance is 30 k or less then it starts to make a noticeable difference between
+the actual and logged voltages (and hence measured AFR values).
+</p>
+<p>
+We have created an eXcel spreadsheet to help you build a custom table
+of Vout vs. AFR - <a href="http://techedge.com.au/vehicle/wbo2/voutnew.xls">See voutnew.xls</a>.
+You supply the output impedance <b>Ro</b> of the wideband unit (<b>1,000</b> for version 1.0
+and <b>100</b> for version 1.1/1.5) and the input impedance <b>Ri</b> of your device.
+A graph is automatically generated.
+</p>
+<p>
+Many people may not know the input impedance of their logger (or ECM, etc.)
+but it can be determined by noting when half of an applied voltage is "lost"
+across a resistor in series with the voltage.
+</p>
+
+<h2>Offset Voltages, V<sub>out</sub> and the Real World</h2>
+
+
+	<img align="left" src="./Australian DIY Wide Band Information_files/voutoff.gif" width="303" height="227" hspace="5" vspace="5">
+<p>
+A further complication is that sometimes there will be a large enough difference
+in voltage between the logging device (ECM, etc.) GROUND point and the Wideband
+unit itself, that errors start to become apparent. These differences in GROUND
+potential are simply a fact of life that result from non-zero resistance
+between different GROUND points - this causes measured voltage differences when
+currents flow.
+</p>
+<p>
+These differences in voltage are normally called <font color="red">offset voltages</font>
+and they tend to remain fixed for a given installation (or vary with some stimulus such as
+switching on headlights, etc).
+Offset voltages tend to be a little tricky as they may be different for what otherwise
+looks like the same installation.
+</p>
+
+<br>
+<center>
+<p>
+	<a href="javascript:back()">Previous</a> |
+	<a href="http://techedge.com.au/vehicle/wbo2/default.htm">Oz DIY-WB Home</a> |
+	<a href="http://techedge.com.au/vehicle/wbo2/wborder.htm"><b>Order</b> Oz DIY-WB parts/units</a> |
+	<a href="http://techedge.com.au/copyrite.htm">Copyright</a>
+</p>
+
+<img align="left" hspace="20" vspace="2" alt="logo" width="50" height="93" src="./Australian DIY Wide Band Information_files/logosml.gif">
+<p>
+<font color="GREEN">Last updated <b>15 th Mayt</b> 2003</font>
+<br>
+Created 17th August 2002
+| <i><a href="mailto:peter@techedge.com.au?subject=DIY%20WB%20O2%20Page%20has%20a%20broken%20link">Tell me about broken links</a></i>
+</p>
+
+<hr size="1" noshade="">
+<p>
+<font color="RED">This document is copyright © 2002, Tech Edge  Pty. Ltd.<br></font>
+<br>
+	<a href="javascript:back()">Previous</a> |
+	<a href="http://techedge.com.au/">Home</a> |
+	<a href="mailto:peter@techedge.com.au?subject=DIY%20WB%20Data%20Feedback">Feedback</a> |
+	<a href="http://techedge.com.au/copyrite.htm">Copyright</a>
+</p>
+</center>
+
+
+</body></html>

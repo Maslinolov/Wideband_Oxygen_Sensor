@@ -77,7 +77,8 @@ int Shw = 0;
 //int btn = 0;
 //bool slp = false;
 int dltmp = 0;
-int dl = 25;
+int dl = 12;
+int dlLH = 0;
 
 int FrstL = 0, ScndL = 0, ThrdL = 0;
 
@@ -185,8 +186,7 @@ void setup() {
   power_twi_disable();  */
  // attachInterrupt(Btn, ButInter, RISING); 
  
-  Serial_2.begin(19200);
-  Serial_2.println("R");
+  Serial_2.begin(4800);
   
   TCCR1A = 0b00000001;  // 8bit
   TCCR1B = 0b00000001;
@@ -203,7 +203,7 @@ void setup() {
   //analogReference(DEFAULT);
   pinMode(lambda_pin, INPUT);
 
-  analogWrite(PWM_pin, 140);
+  analogWrite(PWM_pin, 100);
   digitalWrite(ConvVCC, HIGH);
   digitalWrite(Frst, HIGH); 
   digitalWrite(Scnd, LOW); 
@@ -227,6 +227,7 @@ void loop(){
   if(dltmp >= dl){
       dltmp = 0;
       Serial_2.println(AFR);
+      Serial_2.println('R');
     }
   vouttmp += analogRead(lambda_pin);
   voutn++;
@@ -238,13 +239,30 @@ void loop(){
     }
   for(int i = 0; i < 30; i++){    
     if(vout >= pgm_read_float(&afrtable[i][0]) && vout < pgm_read_float(&afrtable[i + 1][0])){
-        AFR = (int)((pgm_read_float(&afrtable[i][1]) * vout + pgm_read_float(&afrtable[i][2]))*10);
-      }
+      AFR = (int)((pgm_read_float(&afrtable[i][1]) * vout + pgm_read_float(&afrtable[i][2]))*10);
+    }    
     /*if(vout >= afrtable[i][0] && vout < afrtable[i + 1][0]){
         AFR = (int)((afrtable[i][1] * vout + afrtable[i][2])*100);
       }*/
     }
-    
+    dlLH++;
+    if(dlLH >= 10){
+      if(vout < pgm_read_float(&afrtable[0][0])){
+        if(AFR != 100){
+          AFR = 100;               
+        }      
+        else
+          AFR = 101;
+      }
+      if(vout > pgm_read_float(&afrtable[29][0])){
+        if(AFR != 200){
+          AFR = 200;        
+        }
+        else
+          AFR = 201;
+      }
+      dlLH = 0;
+    }
   //Вывод напряжения без преобразования
  /* FrstL = (int)voutADC / 100;
   ScndL = ((int)(voutADC) % 100)/10;
