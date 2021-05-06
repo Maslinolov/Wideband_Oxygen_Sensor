@@ -28,8 +28,8 @@ SoftwareSerial Serial_2(PD4, PD2);
 #define lambda_pin 14
 
 #define OpenAir 5
-#define OpenAirVout 1024
-double ConvK = 0.0048828125; //OpenAir/OpenAirVout;
+#define OpenAirVout 1010
+double ConvK = 0.00495049505; //OpenAir/OpenAirVout;
 
 //Вид таблицы AFR: Vout, A, B
 const PROGMEM float afrtable [30][3] = {
@@ -224,14 +224,14 @@ void setup() {
   }*/
 void loop(){ 
   dltmp++;
-  if(dltmp >= dl){
+  /*if(dltmp >= dl){
       dltmp = 0;
       Serial_2.println(AFR);
       Serial_2.println('R');
-    }
+    }*/
   vouttmp += analogRead(lambda_pin);
   voutn++;
-  if(voutn == voutsmpls - 1 ){
+  if(voutn == voutsmpls){
     vout = (vouttmp / voutsmpls) * ConvK;
     voutADC = vouttmp / voutsmpls;
     vouttmp = 0;
@@ -263,12 +263,12 @@ void loop(){
       }
       dlLH = 0;
     }
-  //Вывод напряжения без преобразования
- /* FrstL = (int)voutADC / 100;
+  /*//Вывод напряжения без преобразования
+  FrstL = (int)voutADC / 100;
   ScndL = ((int)(voutADC) % 100)/10;
   ThrdL = (int)(voutADC) % 10;*/
   //Вывод напряжения с платы лямбды
- /* FrstL = ((int)vout * 100) / 100;
+  /*FrstL = ((int)vout * 100) / 100;
   ScndL = ((int)(vout * 100) % 100)/10;
   ThrdL = (int)(vout * 100) % 10;*/
   
